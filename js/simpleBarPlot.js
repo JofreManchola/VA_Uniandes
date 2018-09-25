@@ -2,7 +2,7 @@
 	var margin = {top: 20, right: 20, bottom: 30, left: 40},
 	    width = 960 - margin.left - margin.right,
 	    height = 500 - margin.top - margin.bottom;
- console.log(height)
+ console.log(height);
 
 	var x = d3.scaleBand()
 		    .rangeRound([0, width])
@@ -29,10 +29,10 @@
 				valor: +d.dato
 			};
 		}). then(function(data) {
-			console.log(data);
+			console.log("data 2",data);
 
-	x.domain(data.map(function(d) {return d.nomdepto}));
-	y.domain([0, d3.max(d3.map(function(d) {return d.dato}))]);
+	x.domain(data.map(function(d) {return d.departamento}));
+	y.domain([0, d3.max(data.map(function(d) {return d.valor}))]);
 
 		  	svg.append("g")
 			      .attr("class", "x axis")
@@ -53,13 +53,9 @@
 			      .data(data)
 			    .enter().append("rect")
 			      .attr("class", "bar")
-			      .attr("x", function(d) { return x(d.nomdepto); })
+			      .attr("x", function(d) { return x(d.departamento); })
 			      .attr("width", x.bandwidth())
-			      .attr("y", function(d) { return y(d.dato); })
-			      .attr("height", function(d) { return height - y(d.dato); });
+			      .attr("y", function(d) { return y(d.valor); })
+			      .attr("height", function(d) { return height - y(d.valor); });
 
 			});
-
-
-
-
